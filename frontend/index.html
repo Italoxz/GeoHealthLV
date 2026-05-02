@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>GeoHealthLV</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">LV</div>
+        <div>
+          <h1>GeoHealthLV</h1>
+          <p>Leishmaniose Visceral na Ilha de São Luís</p>
+        </div>
+      </div>
+
+      <section class="card">
+        <h2>Configuração da previsão</h2>
+
+        <label>Doença analisada</label>
+        <div class="fixed-field">Leishmaniose Visceral</div>
+
+        <label>Região analisada</label>
+        <div class="fixed-field">Ilha de São Luís - MA</div>
+
+        <label for="periodo">Período de previsão</label>
+        <select id="periodo">
+          <option value="1">1 mês</option>
+          <option value="6">6 meses</option>
+          <option value="12">1 ano</option>
+          <option value="60">5 anos</option>
+          <option value="120">10 anos</option>
+        </select>
+
+        <button id="btnPrevisao">Gerar previsão</button>
+      </section>
+
+      <section class="card result-card">
+        <h2>Resultado geral</h2>
+
+        <div class="metric">
+          <span>Risco médio</span>
+          <strong id="mediaRisco">--%</strong>
+        </div>
+
+        <div class="metric">
+          <span>Maior risco</span>
+          <strong id="municipioMaiorRisco">--</strong>
+        </div>
+
+        <div class="metric">
+          <span>Dados reais</span>
+          <strong id="dadosReais">--</strong>
+        </div>
+
+        <p id="resumo">Aguardando previsão.</p>
+      </section>
+
+      <section class="card">
+        <h2>Legenda</h2>
+
+        <div class="legend-item">
+          <span class="legend-color baixo"></span>
+          <p>Baixo risco</p>
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-color medio"></span>
+          <p>Risco médio</p>
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-color alto"></span>
+          <p>Alto risco</p>
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-color critico"></span>
+          <p>Risco crítico</p>
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-color indefinido"></span>
+          <p>Sem dados</p>
+        </div>
+      </section>
+
+      <section class="notice">
+        <strong>Fonte dos dados</strong>
+        <p id="fonteDados">
+          SINAN/DATASUS — microdados públicos processados localmente.
+        </p>
+      </section>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h2>Mapa epidemiológico inteligente</h2>
+          <p>Previsão baseada em série histórica real do SINAN/DATASUS.</p>
+        </div>
+
+        <div id="apiStatus" class="api-status">API: verificando...</div>
+      </header>
+
+      <section class="map-section">
+        <div id="map"></div>
+      </section>
+
+      <section class="table-section">
+        <h2>Análise por município</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Município</th>
+                <th>Último ano</th>
+                <th>Casos no último ano</th>
+                <th>Total histórico</th>
+                <th>Novos casos estimados</th>
+                <th>Crescimento</th>
+                <th>Risco</th>
+                <th>Nível</th>
+                <th>Tendência</th>
+            </tr>
+            </thead>
+
+            <tbody id="tabelaMunicipios">
+              <tr>
+                <td colspan="9">Aguardando previsão...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="table-section">
+        <h2>Série histórica por ano</h2>
+
+        <div class="table-wrapper">
+          <table id="tabelaHistorica">
+            <thead id="historicoHead">
+              <tr>
+                <th>Município</th>
+              </tr>
+            </thead>
+
+            <tbody id="historicoBody">
+              <tr>
+                <td>Aguardando dados...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
