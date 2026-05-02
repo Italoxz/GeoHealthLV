@@ -124,7 +124,7 @@ function renderizarMapa(dados) {
     circulo.bindPopup(`
       <div>Total histórico: ${municipio.totalHistorico ?? 0}</div>
         <div>Novos casos estimados: ${municipio.casosEstimados ?? 0}</div>
-        <div>Crescimento: ${municipio.crescimentoPercentual ?? 0}%</div>
+        <div>Crescimento: ${formatarCrescimento(municipio.crescimentoPercentual ?? 0)}</td></div>
         <div class="popup-risk">Risco previsto: ${municipio.risco ?? 0}%</div>
         <div>Tendência: ${municipio.tendencia}</div>
     `);
@@ -138,6 +138,20 @@ function renderizarMapa(dados) {
       padding: [40, 40]
     });
   }
+}
+
+function formatarCrescimento(valor) {
+  const numero = Number(valor || 0);
+
+  if (numero > 0) {
+    return `Aumento de ${numero.toFixed(2)}%`;
+  }
+
+  if (numero < 0) {
+    return `Diminuição de ${Math.abs(numero).toFixed(2)}%`;
+  }
+
+  return "Estável";
 }
 
 function renderizarTabelaMunicipios(dados) {
