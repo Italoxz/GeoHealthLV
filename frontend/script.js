@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000";
+const API_URL = "https://geohealthlv.onrender.com";
 
 const map = L.map("map").setView([-2.52, -44.18], 11);
 
