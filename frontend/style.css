@@ -6,7 +6,7 @@
 }
 
 :root {
-  --bg-dark: #06111f;
+  --bg-silver: #C0C0C0;
   --panel: #0d1b2d;
   --panel-2: #10243b;
   --text: #f8fafc;
@@ -17,7 +17,7 @@
 }
 
 body {
-  background: var(--bg-dark);
+  background: var(--bg-silver);
   color: var(--text);
 }
 
